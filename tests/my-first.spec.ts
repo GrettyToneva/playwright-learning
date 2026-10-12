@@ -11,4 +11,12 @@ await page.getByPlaceholder('What needs to be done?').press('Enter');
 // Expected: the todo appears in the list
 await expect(page.getByTestId('todo-title')).toHaveText('Buy milk');
 
+// Fail in purpose
+//await expect(page.getByTestId('todo-title')).toHaveText('Buy Bread')
+
+await page.getByPlaceholder('What needs to be done?').fill('Walk the dog');
+await page.getByPlaceholder('What needs to be done?').press('Enter');
+
+await expect(page.getByTestId('todo-title')).toHaveText(['Buy milk', 'Walk the dog'])
+
 });
